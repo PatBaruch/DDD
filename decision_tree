@@ -1,0 +1,16 @@
+digraph Tree {
+node [shape=box];
+Start -> High_Affordability [label="Enclave"]
+High_Affordability -> Affordable [label=">= 90%"]
+High_Affordability -> Mid_Affordability [label="< 90%"]
+Mid_Affordability -> Affordable [label="50-90%"]
+Mid_Affordability -> Low_Affordability [label="< 50%"]
+Low_Affordability -> Unaffordable [label="Low Affordability"]
+Start -> TradeValueCheck [label="Trade Value"]
+TradeValueCheck -> Unaffordable [label="> 75th Percentile"]
+TradeValueCheck -> MonthlyPaymentCheck [label="<= 75th Percentile"]
+MonthlyPaymentCheck -> Unaffordable [label="> 75th Percentile"]
+MonthlyPaymentCheck -> StructuralIntegrityCheck [label="<= 75th Percentile"]
+StructuralIntegrityCheck -> Unaffordable [label="< 25th Percentile"]
+StructuralIntegrityCheck -> Affordable [label=">= 25th Percentile"]
+}
