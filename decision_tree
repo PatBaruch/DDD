@@ -1,16 +1,14 @@
 digraph Tree {
-node [shape=box];
-Start -> High_Affordability [label="Enclave"]
-High_Affordability -> Affordable [label=">= 90%"]
-High_Affordability -> Mid_Affordability [label="< 90%"]
-Mid_Affordability -> Affordable [label="50-90%"]
-Mid_Affordability -> Low_Affordability [label="< 50%"]
-Low_Affordability -> Unaffordable [label="Low Affordability"]
-Start -> TradeValueCheck [label="Trade Value"]
-TradeValueCheck -> Unaffordable [label="> 75th Percentile"]
-TradeValueCheck -> MonthlyPaymentCheck [label="<= 75th Percentile"]
-MonthlyPaymentCheck -> Unaffordable [label="> 75th Percentile"]
-MonthlyPaymentCheck -> StructuralIntegrityCheck [label="<= 75th Percentile"]
-StructuralIntegrityCheck -> Unaffordable [label="< 25th Percentile"]
-StructuralIntegrityCheck -> Affordable [label=">= 25th Percentile"]
+    node [shape=box];
+
+    Start -> EnclaveCheck [label="Check Enclave"]
+
+    EnclaveCheck -> Affordable [label="Enclave Affordability ≥ 90%"]
+    EnclaveCheck -> AffordabilityMidRange [label="Enclave Affordability 50–90%"]
+    EnclaveCheck -> Unaffordable [label="Enclave Affordability < 50%"]
+
+    AffordabilityMidRange -> MortgageCheck [label="Go to Mortgage Check"]
+
+    MortgageCheck -> Affordable [label="Monthly Payment ≤ $750"]
+    MortgageCheck -> Unaffordable [label="Monthly Payment > $750"]
 }
